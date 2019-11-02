@@ -5,18 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
     <link rel="stylesheet" href="">
-
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <p>{{ msg }}</p>
+        <!-- v-cloak 可以解决插值表达式闪烁的问题 -->
+        <p v-cloak>++++++++++++{{ msg }}---------</p>
+        <h4 v-text='msg'>--------------</h4>
+        <!-- v-text默认时没有闪烁问题的 -->
+        <!-- v-text会覆盖元素中原本的内容，v-cloak不会 -->
+        <div v-closk>{{ msg1 }}</div>
+        <div v-text="msg1"></div>
+        <div v-html="msg1"></div>
     </div>
     <script type="text/javascript" src="lib/vue.js"></script>
     <script type="text/javascript">
         var vm = new Vue({
             el:'#app',
             data:{
-                msg:'水水'
+                msg:'水水',
+                msg1:'<h1>如同天上降魔主，真是人间太岁神！</h1>'
             }
         })
     </script>
