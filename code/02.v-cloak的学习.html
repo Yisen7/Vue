@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
     <link rel="stylesheet" href="">
+    <!-- ctrl+alt+h：美化html js css代码 -->
     <style>
         [v-cloak]{
             display: none;
@@ -20,13 +21,14 @@
         <h4 v-text='msg'>--------------</h4>
         <!-- v-text默认时没有闪烁问题的 -->
         <!-- v-text会覆盖元素中原本的内容，v-cloak不会 -->
-        <div v-closk>{{ msg1 }}</div>
+        <div v-cloak>{{ msg1 }}</div>
         <div v-text="msg1"></div>
         <div v-html="msg1"></div>
         <!-- v-bind 用于绑定属性的指令 -->
         <!-- 注意：v-bind指令可以简写为 : 要绑定的属性 -->
         <!-- v-bind中可以写合法的JS表达式，""中的内容会被解析为表达式 -->
-        <input type="button" value="按钮" v-bind:title="mytitle+'123'" id="btn">
+        <!-- Vue中提供了 v-on事件绑定机制 -->
+        <input type="button" value="按钮" v-bind:title="mytitle+'123'" v-on:mouseover="show">
     </div>
     <script type="text/javascript" src="lib/vue.js"></script>
     <script type="text/javascript">
@@ -36,10 +38,20 @@
             msg: '水水',
             msg1: '<h1>如同天上降魔主，真是人间太岁神！</h1>',
             mytitle: '这是一个自定义的title'
+        },
+        methods:{
+            show:function () {
+                alert('Hello');
+            }
         }
     })
 
-    document.getElementById('btn').onclick =
+/*    document.getElementById('btn').onclick = function() {
+        // body...
+        alert(123);
+        confirm(456);
+        console.log('test');
+    }*/
     </script>
 </body>
 
